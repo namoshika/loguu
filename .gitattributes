@@ -1,0 +1,3 @@
+*.ps1 text=auto diff=utf16
+*.psm1 text=auto diff=utf16
+*.psd1 text=auto diff=utf16
