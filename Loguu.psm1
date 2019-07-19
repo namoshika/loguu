@@ -9,7 +9,7 @@ function Start-Log {
     )
     # ログ保存先が無ければ作る
     if (-not (Test-Path -PathType Container $LogDirectory)) {
-        New-Item -ItemType Directory $LogDirectory
+        New-Item -ItemType Directory $LogDirectory | Out-Null
     }
 
     # ログファイルパス生成
@@ -74,7 +74,7 @@ function Start-Log {
         foreach ($item in $expire_log_path) {
             $logpath = $item.FullName
             $logtext = Get-LogText "INFO" "古いログを削除 ($logpath)"
-            Remove-Item $logpath
+            Remove-Item $logpath | Out-Null
             Add-Content $logfile_path -Encoding utf8 $logtext
         }
     }

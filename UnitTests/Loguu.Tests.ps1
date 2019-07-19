@@ -4,7 +4,9 @@ Push-Location $PSScriptRoot\..\
 Describe "Loguu-Test (dev)" {
     Import-Module ..\Loguu
     Context "ロギング" {
-        Remove-Item -Recurse .\log
+        if (Test-Path -PathType Container .\log) {
+            Remove-Item -Recurse .\log
+        }
         $ErrorActionPreference = "Continue"
         $VerbosePreference = "Continue"
         $WarningPreference = "Continue"
@@ -81,6 +83,7 @@ Describe "Loguu-Test (dev)" {
     Remove-Module "Loguu"
 }
 Describe "Loguu-Test (prd)" {
+    . "$PSScriptRoot\..\build.ps1"
     Import-Module ..\Loguu\Loguu
     It "本番相当の設定で正常動作すること" {
         Start-Log .\log "hoge_{0}.log" {

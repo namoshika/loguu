@@ -1,5 +1,6 @@
 param ([switch][bool] $publish)
 
+New-Item -ItemType Directory -Force $PSScriptRoot\Loguu
 Get-Content -Encoding utf8 $PSScriptRoot\Loguu.psd1 | Out-File -Encoding unicode $PSScriptRoot\Loguu\Loguu.psd1
 Get-Content -Encoding utf8 $PSScriptRoot\Loguu.psm1 | Out-File -Encoding unicode $PSScriptRoot\Loguu\Loguu.psm1
 Get-Content -Encoding utf8 $PSScriptRoot\Sample.ps1 | Out-File -Encoding unicode $PSScriptRoot\Loguu\Sample.ps1
